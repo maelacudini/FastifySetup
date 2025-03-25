@@ -18,7 +18,7 @@ Fastify setup with EJS templates, Tailwind, Webpack, and much more.
 
 1. **Clone the repository:**
 
-    git clone https://github.com/maelacudini/FastifySetup.git
+    git clone https://github.com/maelacudini/FastifySetup.git \
     cd FastifySetup
 
 2. **Install dependencies:**

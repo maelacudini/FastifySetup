@@ -1,7 +1,7 @@
 import fastifyView from '@fastify/view';
 import fastifyStatic from '@fastify/static';
 import ejs from 'ejs';
-import path, { join } from 'path';
+import path from 'path';
 import { getRootDir } from './getRootDir';
 import { FastifyInstance } from 'fastify';
 

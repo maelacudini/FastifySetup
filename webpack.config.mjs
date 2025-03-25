@@ -1,4 +1,4 @@
-import path, { dirname, resolve } from "path";
+import path, { dirname } from "path";
 import { fileURLToPath } from "url";
 import MiniCssExtractPlugin from "mini-css-extract-plugin";
 
@@ -31,14 +31,10 @@ export default {
             },
         ],
     },
-    resolve: {
-        extensions: [ '.ts', '.js' ],
-    },
+    resolve: { extensions: [ '.ts', '.js' ], },
     target: 'node',
     mode: 'development',
     plugins: [
-        new MiniCssExtractPlugin( {
-            filename: 'output.css',
-        } ),
+        new MiniCssExtractPlugin( { filename: 'output.css', } ),
     ],
 };

@@ -1,1 +1,66 @@
-@import "tailwindcss";
+@import "tailwindcss"; 
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* Check out https://tailwindcss.com/docs/theme to understand how to customize variants */
+@theme {
+    --color-background: #ffffff;
+    --color-foreground: #0f0f19;
+    --color-card: #ffffff;
+    --color-card-foreground: #0f0f19;
+    --color-popover: #ffffff;
+    --color-popover-foreground: #0f0f19;
+    --color-primary: #121223;
+    --color-primary-foreground: #fafafa;
+    --color-secondary: #f0f0f3;
+    --color-secondary-foreground: #121223;
+    --color-muted: #f0f0f3;
+    --color-muted-foreground: #7e7e94;
+    --color-accent: #f0f0f3;
+    --color-accent-foreground: #121223;
+    --color-destructive: #f24638;
+    --color-destructive-foreground: #fafafa;
+    --color-border: #e6e6e6;
+    --color-input: #e6e6e6;
+    --color-ring: #121223;
+    --radius-radius: 0.5rem;
+    --color-chart-1: #f43f5e;
+    --color-chart-2: #af915e;
+    --color-chart-3: #b94c30;
+    --color-chart-4: #6eaf54;
+    --color-chart-5: #7c9a3c;
+}
+
+@layer base {
+    @variant dark {
+        --color-background: #07070a;
+        --color-foreground: #fafafa;
+        --color-card: #07070a;
+        --color-card-foreground: #fafafa;
+        --color-popover: #07070a;
+        --color-popover-foreground: #fafafa;
+        --color-primary: #fafafa;
+        --color-primary-foreground: #121223;
+        --color-secondary: #252535;
+        --color-secondary-foreground: #fafafa;
+        --color-muted: #252535;
+        --color-muted-foreground: #7e7e94;
+        --color-accent: #252535;
+        --color-accent-foreground: #fafafa;
+        --color-destructive: #b8382d;
+        --color-destructive-foreground: #fafafa;
+        --color-border: #252535;
+        --color-input: #252535;
+        --color-ring: #b0baff;
+        --color-chart-1: #4c9ae0;
+        --color-chart-2: #7fa95c;
+        --color-chart-3: #b74c2f;
+        --color-chart-4: #9d4aa9;
+        --color-chart-5: #a13b69;
+    }
+}
+
+h1 {
+    @apply text-6xl font-bold text-red-500;
+    @apply text-foreground;
+}

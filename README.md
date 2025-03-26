@@ -77,7 +77,7 @@ Fastify setup with EJS templates, Tailwind, Webpack, and much more.
 
 #### `src/utils/`
 
-* **Purpose:** Stores small, general-purpose helper functions and utilities.
+* **Purpose:** Stores small, general-purpose helper functions and utilities, only related to server (node).
 * **Responsibility:** Providing reusable utility functions.
 
 ### `src/client`
@@ -107,6 +107,11 @@ Fastify setup with EJS templates, Tailwind, Webpack, and much more.
 
 * **Purpose:** Stores static assets like CSS, JavaScript, and images.
 * **Responsibility:** Serving static files.
+
+#### `src/client/scripts/`
+
+* **Purpose:** Stores small, general-purpose helper functions and utilities, only related to client (browser).
+* **Responsibility:** Providing reusable utility functions.
 
 
 ## Naming Conventions

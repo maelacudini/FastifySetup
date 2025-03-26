@@ -6,10 +6,17 @@ import tseslint from "typescript-eslint";
 export default defineConfig( [
   tseslint.configs.recommended,
   { files: [ "src/**/*.{js,mjs,cjs,ts}" ] },
+  // Default Node.js environment for most files
   {
     files: [ "src/**/*.{js,mjs,cjs,ts}" ],
     languageOptions: { globals: globals.node }
   },
+  // Browser environment for specific client files
+  {
+    files: [ "src/client/**/*.{js,mjs,cjs,ts}" ],
+    languageOptions: { globals: { ...globals.browser } },
+  },
+  // General rules
   {
     files: [ "src/**/*.{js,mjs,cjs,ts}" ],
     plugins: { js },
@@ -37,5 +44,5 @@ export default defineConfig( [
       } ],
     },
   },
-  globalIgnores( [ "dist/**/*", "node_modules", "webpack.config.mjs" ] ),
+  globalIgnores( [ "dist/**/*", "node_modules", "webpack.config.mjs", "webpack.config.client.mjs", "webpack.config.server.mjs" ] ),
 ] );

@@ -2,12 +2,12 @@
   "name": "fastifysetup",
   "version": "1.0.0",
   "description": "",
-  "main": "dist/bundle.cjs",
+  "main": "dist/server/main.bundle.cjs",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "webpack",
-    "start": "node dist/bundle.cjs",
-    "dev": "concurrently \"webpack --watch\" \"nodemon dist/main.bundle.cjs\""
+    "build": "webpack --config webpack.config.client.mjs && webpack --config webpack.config.server.mjs",
+    "start": "node dist/server/main.bundle.cjs",
+    "dev": "concurrently \"webpack --config webpack.config.client.mjs && webpack --config webpack.config.server.mjs --watch\" \"nodemon dist/server/main.bundle.cjs\""
   },
   "keywords": [],
   "author": "",

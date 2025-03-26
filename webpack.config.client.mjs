@@ -7,11 +7,11 @@ const __dirname = dirname( __filename );
 
 export default {
     entry: {
-        main: './src/index.ts',
         styles: './src/client/style/globals.css',
+        scripts: './src/client/scripts/main.ts',
     },
     output: {
-        filename: '[name].bundle.cjs',
+        filename: 'client/[name].bundle.cjs',
         path: path.resolve( __dirname, 'dist' ),
     },
     module: {
@@ -32,7 +32,7 @@ export default {
         ],
     },
     resolve: { extensions: [ '.ts', '.js' ], },
-    target: 'node',
+    target: 'web',
     mode: 'development',
     plugins: [
         new MiniCssExtractPlugin( { filename: 'output.css', } ),

@@ -1,6 +1,6 @@
 ## Project introduction
 
-Fastify setup with EJS templates, Tailwind, Webpack, and much more.
+Fastify setup with TypeScript, EJS, Alpine, HTMX, Tailwind, MongoDB, Webpack, Eslint and much more.
 
 
 ## Requirements

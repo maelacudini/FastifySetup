@@ -1,7 +1,7 @@
-import { defineConfig, globalIgnores } from "eslint/config";
-import globals from "globals";
-import js from "@eslint/js";
-import tseslint from "typescript-eslint";
+import { defineConfig, globalIgnores } from "eslint/config"
+import globals from "globals"
+import js from "@eslint/js"
+import tseslint from "typescript-eslint"
 
 export default defineConfig( [
   tseslint.configs.recommended,
@@ -42,7 +42,8 @@ export default defineConfig( [
           "multiline": true, "minProperties": 2
         }
       } ],
+      "semi": [ "error", "never" ]
     },
   },
   globalIgnores( [ "dist/**/*", "node_modules", "webpack.config.mjs", "webpack.config.client.mjs", "webpack.config.server.mjs" ] ),
-] );
+] )

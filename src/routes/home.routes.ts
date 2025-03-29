@@ -1,13 +1,15 @@
-import { FastifyInstance } from 'fastify';
+import { FastifyInstance } from 'fastify'
 
-async function homeRoutes(fastify: FastifyInstance) {
+async function homeRoutes (fastify: FastifyInstance) {
   fastify.get( '/', async (request, reply) => {
     return reply.viewAsync(
       'views/home.ejs', 
-      { name: 'User' },
-      { layout: 'components/layouts/main.ejs' }
-    );
-  });
+      {
+        title: 'Homepage', 
+        name: 'User' 
+      },
+    )
+  })
 }
 
-export default homeRoutes;
+export default homeRoutes

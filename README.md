@@ -68,7 +68,6 @@ Fastify setup with EJS templates, Tailwind, Webpack, and much more.
 * **Purpose:** Contains database-related code.
 * **Subfolders:**
     * `models/`: Defines database models.
-    * `connection.ts`: Handles database connection logic.
 
 #### `src/lib/`
 
@@ -78,7 +77,10 @@ Fastify setup with EJS templates, Tailwind, Webpack, and much more.
 #### `src/utils/`
 
 * **Purpose:** Stores small, general-purpose helper functions and utilities, only related to server (node).
-* **Responsibility:** Providing reusable utility functions.
+* **Subfolders:**
+    * `constants/`: Keeps all constants in one place. Constants must be written in all caps, use snake case.
+    * `functions/`: General-purpose helper functions.
+    * `schemas/`: Routes schemas.
 
 ### `src/client`
 
@@ -120,5 +122,7 @@ Fastify setup with EJS templates, Tailwind, Webpack, and much more.
 * **Services:** `[resource].service.ts`
 * **Routes:** `[resource].routes.ts`
 * **Models:** `[resource].model.ts`
+* **Schemas:** `[resource].schemas.ts`
 * **Utilities:** descriptive names for function files.
 * **Libraries:** descriptive names for library files.
+

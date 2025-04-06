@@ -13,7 +13,7 @@ async function registerPlugins( fastify: FastifyInstance ) {
   fastify.register( fastifyView, {
     engine: { ejs: ejs },
     root: path.join( root, 'src', 'client' ),
-    layout: 'components/layouts/layout.ejs',
+    layout: 'partials/layouts/layout.ejs',
     options: { cache: false }
   } )
 

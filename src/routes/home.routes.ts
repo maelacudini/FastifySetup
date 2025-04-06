@@ -6,7 +6,7 @@ async function homeRoutes (fastify: FastifyInstance) {
       'views/home.ejs', 
       {
         title: 'Homepage', 
-        name: 'User' 
+        name: 'User',
       },
     )
   })

@@ -86,7 +86,7 @@ Fastify setup with TypeScript, EJS, Alpine, HTMX, Tailwind, MongoDB, Webpack, Es
 
 * Client side code.
 
-#### `src/client/components/`
+#### `src/client/partials/`
 
 * **Purpose:** Contains EJS fragments and layouts.
 * **Subfolders:**

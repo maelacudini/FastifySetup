@@ -1,6 +1,25 @@
 <p>
-    Hello, <%=name%>!
+  <%= t('hello') %>, <%=name%>!
 </p>
-<button id="theme-toggle">
-    Toggle theme
-</button>
+<div
+  x-data="theme"
+  class="flex gap-4"
+>
+  <template x-for="theme in availableThemes">
+    <button
+      @click="selectTheme(theme.toString())"
+      x-text="theme"
+    ></button>
+  </template>
+</div>
+<div
+  x-data="lang"
+  class="flex gap-4"
+>
+  <template x-for="language in availableLangs">
+    <button
+      @click="selectLang(language.toString())"
+      x-text="language"
+    ></button>
+  </template>
+</div>

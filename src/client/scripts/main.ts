@@ -1,3 +1,4 @@
+import 'htmx.org'
 import Alpine from 'alpinejs'
 import lang from '../utils/functions/lang'
 import theme from '../utils/functions/theme'

@@ -8,7 +8,7 @@ const getUserController = async (request: FastifyRequest<{ Params: { id: string 
   try {
     const { id } = request.params
     const userData: UserType = await getUserService(id)
-    reply.send(userData)
+    reply.header("Content-Type", "text/html").send(`<p>Username: ${userData.username}</p>`)
   } catch (error) {
     reply.status(404).send({ error: (error as FastifyError).message })
   }

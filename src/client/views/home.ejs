@@ -2,6 +2,14 @@
   <%= t('hello') %>, <%=name%>!
 </p>
 <div
+  hx-get="/user/1"
+  hx-trigger="load delay:3s"
+  hx-swap="innerHTML"
+>
+  <p>Getting user...</p>
+</div>
+
+<div
   x-data="theme"
   class="flex gap-4"
 >

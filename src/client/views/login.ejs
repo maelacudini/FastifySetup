@@ -4,22 +4,37 @@
     <p class="text-muted-foreground">It's nice to see you again!</p>
   </div>
   <div class="flex flex-col gap-2">
-    <label for="Email">Email</label>
-    <%- include('../partials/atoms/input', { type: 'text', id: 'email', placeholder: 'mario@example.com' }) %>
+    <label for="email">Email</label>
+    <input
+      type="email"
+      name="email"
+      id="email"
+      placeholder="mario@example.com"
+    />
   </div>
   <div class="flex flex-col gap-2">
     <div class="flex items-center">
-      <label for="Password">Password</label>
+      <label for="password">Password</label>
       <a
         href="/"
         class="ml-auto text-sm underline-offset-4 hover:underline"
       >Forgot your password?</a>
     </div>
-    <%- include('../partials/atoms/input', { type: 'password', id: 'password', placeholder: '' }) %>
+    <input
+      type="password"
+      name="password"
+      id="password"
+    />
   </div>
-  <%- include('../partials/atoms/button', { text: 'Login', type: 'submit', variant: 'primary' }) %>
+  <button
+    type="submit"
+    class="button-primary"
+  >Login</button>
   <div class="relative text-center text-sm after:absolute after:inset-0 after:top-1/2 after:z-0 after:flex after:items-center after:border-t after:border-border">
     <span class="relative z-10 bg-background px-2 text-muted-foreground">Don't have an account?</span>
   </div>
-  <%- include('../partials/atoms/button', { text: 'Signup', type: 'submit', variant: 'outline' }) %>
+  <a
+    href="/signup"
+    class="button-outline"
+  >Signup</a>
 </form>

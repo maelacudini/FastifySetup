@@ -1,5 +1,5 @@
 <header>
-  <nav>
+  <nav class="flex items-center gap-8">
     <p>This is the header</p>
     <div
       x-data="theme"
@@ -9,6 +9,7 @@
         <button
           @click="selectTheme(theme.toString())"
           x-text="theme"
+          class="button-primary"
         ></button>
       </template>
     </div>
@@ -21,6 +22,7 @@
           @click="selectLanguage(language.toString())"
           x-text="language"
           :disabled="selectedLanguage === language"
+          class="button-secondary"
         ></button>
       </template>
     </div>

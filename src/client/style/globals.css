@@ -60,6 +60,38 @@
     }
 }
 
-h1, h2, h3, h4, h5, h6, p, small, a, button {
+h1 {
+    @apply text-foreground text-4xl font-bold tracking-tight lg:text-5xl;
+}
+
+h2 {
+    @apply text-foreground text-3xl font-semibold tracking-tight;
+}
+
+h3 {
+    @apply text-foreground text-2xl font-semibold tracking-tight;
+}
+
+h4 {
+    @apply text-foreground text-xl font-semibold tracking-tight;
+}
+
+p {
+    @apply text-foreground text-base font-normal;
+}
+
+small {
+    @apply text-foreground text-sm font-normal leading-none;
+}
+
+label {
+    @apply text-foreground text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70;
+}
+
+ul {
+    @apply my-6 ml-6 list-disc [&>li]:mt-2;
+}
+
+li {
     @apply text-foreground;
 }

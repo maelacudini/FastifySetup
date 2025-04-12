@@ -5,30 +5,39 @@ import path from 'path'
 import { getRootDir } from './getRootDir'
 import { FastifyInstance } from 'fastify'
 import fastifyCookie, { FastifyCookieOptions } from '@fastify/cookie'
+import i18nextConfigs from '../../lib/i18next/i18nextConfigs'
+import i18nextMiddleware from 'i18next-http-middleware'
 // import fastifyMongodb from '@fastify/mongodb';
 
 async function registerPlugins( fastify: FastifyInstance ) {
   const root = getRootDir()  
+  const i18nextInstance = i18nextConfigs()
 
-  fastify.register( fastifyView, {
+  // SERVE VIEWS
+  await fastify.register( fastifyView, {
     engine: { ejs: ejs },
     root: path.join( root, 'src', 'client' ),
     layout: 'partials/layouts/layout.ejs',
     options: { cache: false }
   } )
-
-  fastify.register(fastifyStatic, {
+  
+  // SERVE STATIC FILES (E.G. STYLE)
+  await fastify.register(fastifyStatic, {
     root: path.join(root, 'dist'),
     prefix: '/dist/',
   })
 
-  fastify.register(fastifyCookie, {
+  // USE COOKIES
+  await fastify.register(fastifyCookie, {
     secret: "my-secret",
-    hook: 'onRequest', // set to false to disable cookie autoparsing 
+    hook: 'onRequest',
     parseOptions: {} 
-  }as FastifyCookieOptions)
+  } as FastifyCookieOptions)
 
-  /*fastify.register(fastifyMongodb, {
+  // USE TRANSLATION
+  await fastify.register(i18nextMiddleware.plugin, { i18next: i18nextInstance })
+
+  /*await fastify.register(fastifyMongodb, {
     // force to close the mongodb connection when app stopped
     forceClose: true,
     url: process.env.MONGO_URI,

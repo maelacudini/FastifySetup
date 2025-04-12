@@ -37,4 +37,23 @@ export default {
     plugins: [
         new MiniCssExtractPlugin( { filename: 'output.css', } ),
     ],
+    stats: {
+        preset: 'errors-warnings',
+        moduleTrace: true,
+        errorDetails: true,
+        children: true,
+    },
+    watchOptions: {
+        ignored: [
+            '**/dist/**',
+            '**/node_modules/**',
+            '**/src/controllers/**',
+            '**/src/db/**',
+            '**/src/lib/**',
+            '**/src/routes/**',
+            '**/src/services/**',
+            '**/src/utils/**',
+            '**/src/index.ts',
+        ]
+    }
 };

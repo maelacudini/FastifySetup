@@ -7,7 +7,11 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "webpack --config webpack.config.client.mjs && webpack --config webpack.config.server.mjs",
     "start": "node dist/server/main.bundle.cjs",
-    "dev": "concurrently \"webpack --config webpack.config.client.mjs && webpack --config webpack.config.server.mjs --watch\" \"nodemon dist/server/main.bundle.cjs\""
+    "tsx:watch": "tsx watch src/index.ts",
+    "webpack:watch": "webpack --config webpack.config.client.mjs --watch",
+    "serve-once": "tsx src/index.ts",
+    "dev:client": "npm-run-all --parallel serve-once webpack:watch",
+    "dev": "npm-run-all --parallel tsx:watch webpack:watch"
   },
   "keywords": [],
   "author": "",
@@ -29,10 +33,9 @@
     "i18next": "^24.2.3",
     "i18next-fs-backend": "^2.6.0",
     "i18next-http-middleware": "^3.0.0",
-    "nodemon": "^3.1.9",
+    "npm-run-all": "^4.1.5",
     "postcss": "^8.5.3",
-    "tailwindcss": "^4.0.15",
-    "ts-node": "^10.9.2"
+    "tailwindcss": "^4.0.15"
   },
   "devDependencies": {
     "@eslint/js": "^9.23.0",
@@ -47,6 +50,7 @@
     "postcss-loader": "^8.1.1",
     "style-loader": "^4.0.0",
     "ts-loader": "^9.5.2",
+    "tsx": "^4.19.3",
     "typescript": "^5.8.2",
     "typescript-eslint": "^8.28.0",
     "webpack": "^5.98.0",

@@ -1,5 +1,28 @@
 <header>
   <nav>
     <p>This is the header</p>
+    <div
+      x-data="theme"
+      class="flex gap-4"
+    >
+      <template x-for="theme in availableThemes">
+        <button
+          @click="selectTheme(theme.toString())"
+          x-text="theme"
+        ></button>
+      </template>
+    </div>
+    <div
+      x-data="lang"
+      class="flex gap-4"
+    >
+      <template x-for="language in availableLangs">
+        <button
+          @click="selectLanguage(language.toString())"
+          x-text="language"
+          :disabled="selectedLanguage === language"
+        ></button>
+      </template>
+    </div>
   </nav>
 </header>

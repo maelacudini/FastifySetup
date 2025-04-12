@@ -2,11 +2,11 @@ import { AVAILABLE_LANGS, BASIC_COOKIE_CONFIGS, DEFAULT_LANG, LANG_COOKIE } from
 import { getCookieValueByName } from "./getCookieByName"
 
 export default () => ({
-  defaultLanguage: getCookieValueByName(LANG_COOKIE) || DEFAULT_LANG,
+  selectedLanguage: getCookieValueByName(LANG_COOKIE) || DEFAULT_LANG,
   availableLangs: AVAILABLE_LANGS,
   
   init() {
-    const currentLang = getCookieValueByName(LANG_COOKIE)
+    const currentLang = getCookieValueByName(LANG_COOKIE)    
 
     if (currentLang) {
       document.documentElement.lang = currentLang
@@ -16,10 +16,13 @@ export default () => ({
     }
   },
 
-  selectLang(selectedLang: 'en' | 'it') {
-    this.defaultLanguage = selectedLang
-    document.documentElement.lang = selectedLang
-    document.cookie = `${LANG_COOKIE}=${selectedLang}; ${BASIC_COOKIE_CONFIGS}`
+  selectLanguage(lang: 'en' | 'it') {
+    if (lang === this.selectedLanguage) {
+      return
+    }
+    this.selectedLanguage = lang
+    document.documentElement.lang = lang
+    document.cookie = `${LANG_COOKIE}=${lang}; ${BASIC_COOKIE_CONFIGS}`
     window.location.reload()
   }
 })

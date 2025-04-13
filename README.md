@@ -63,16 +63,19 @@ Fastify setup with TypeScript, EJS, Alpine, HTMX, Tailwind, MongoDB, Webpack, Es
 * **Naming Convention:** `[resource].routes.ts` (e.g., `user.routes.ts`, `product.routes.ts`).
 * **Responsibility:** Routing requests to the appropriate controllers.
 
-#### `src/db/`
-
-* **Purpose:** Contains database-related code.
-* **Subfolders:**
-    * `models/`: Defines database models.
-
 #### `src/lib/`
 
 * **Purpose:** Contains larger, domain-specific, or core reusable modules.
 * **Responsibility:** Encapsulating complex logic or integrations.
+* **Subfolders:**
+    * `i18next/`: i18next logic with locales.
+    * `mongoDB/`: Contains database-related code with models.
+
+#### `src/plugins/`
+
+* **Purpose:** Contains custom plugins.
+* **Naming Convention:** `[name].plugin.ts` (e.g., `jwt.plugin.ts`).
+* **Responsibility:** Dealing with plugin logic.
 
 #### `src/utils/`
 
@@ -81,6 +84,7 @@ Fastify setup with TypeScript, EJS, Alpine, HTMX, Tailwind, MongoDB, Webpack, Es
     * `constants/`: Keeps all constants in one place. Constants must be written in all caps, use snake case.
     * `functions/`: General-purpose helper functions.
     * `schemas/`: Routes schemas.
+    * `types/`: Server side types, keep them separated from Client.
 
 ### `src/client`
 
@@ -90,10 +94,10 @@ Fastify setup with TypeScript, EJS, Alpine, HTMX, Tailwind, MongoDB, Webpack, Es
 
 * **Purpose:** Contains EJS fragments and layouts.
 * **Subfolders:**
-    * `atoms/`: 
-    * `molecules/`: 
-    * `organisms/`: 
-    * `layouts/`: 
+    * `atoms/`: Simplest partials.
+    * `molecules/`: Union of two or more atoms.
+    * `organisms/`: Union of two or more molecules.
+    * `layouts/`: General layouts common to multiple pages.
 
 #### `src/client/style/`
 

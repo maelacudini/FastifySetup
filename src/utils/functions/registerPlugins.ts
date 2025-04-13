@@ -8,7 +8,9 @@ import fastifyCookie, { FastifyCookieOptions } from '@fastify/cookie'
 import i18nextConfigs from '../../lib/i18next/i18nextConfigs'
 import i18nextMiddleware from 'i18next-http-middleware'
 import jwtPlugin from '../../plugins/jwt.plugin'
-// import fastifyMongodb from '@fastify/mongodb';
+import fastifySwagger from '@fastify/swagger'
+import fastifySwaggerUi from '@fastify/swagger-ui'
+import { PORT } from '../constants/constants'
 
 const registerPlugins = async ( fastify: FastifyInstance ) => {
   const root = getRootDir()  
@@ -38,24 +40,39 @@ const registerPlugins = async ( fastify: FastifyInstance ) => {
   // USE TRANSLATION
   await fastify.register(i18nextMiddleware.plugin, { i18next: i18nextInstance })
 
-  // USE AND VALIDATE JWT, check out https://www.youtube.com/watch?v=FVJYlRvQom8
+  // USE JWT, check out https://www.youtube.com/watch?v=FVJYlRvQom8
   await fastify.register(jwtPlugin)
 
-  /*await fastify.register(fastifyMongodb, {
-    // force to close the mongodb connection when app stopped
-    forceClose: true,
-    url: process.env.MONGO_URI,
-    name: 'MONGODB_CONNECTION_1',
-    connectTimeoutMS: 5000,
-    database: 'your_database_name',
-    // maximum number of connections that are currently in the process of being established
-    maxConnecting: 5,
-    // maximum number of established and idle connections that are kept in the connection pool
-    maxPoolSize: 20,
-    ssl: true,
-    // how often the driver checks that the connection is still alive
-    heartbeatFrequencyMS: 5000,
-  })*/
+  // REGISTER SWAGGER
+  await fastify.register(fastifySwagger, {
+    swagger: {
+      info: {
+        title: 'Fastify Setup APIs',
+        description: 'API documentation for Fastify Setup project',
+        version: '1.0.0',
+      },
+      host: process.env.NODE_ENV === 'production'
+        ? process.env.PROD_HOST : `localhost:${PORT}`,
+      schemes: process.env.NODE_ENV === 'production' ? ['https'] : ['http'],
+      consumes: ['application/json'],
+      produces: ['application/json'],
+    },
+  })
+  
+  // REGISTER SWAGGER UI
+  await fastify.register(fastifySwaggerUi, {
+    routePrefix: '/docs', // the docs will be available at http://localhost:3000/docs
+    uiConfig: {
+      docExpansion: 'list',
+      deepLinking: false
+    },
+    staticCSP: true,
+    // eslint-disable-next-line no-unused-vars, @typescript-eslint/no-unused-vars
+    transformSpecification: (swaggerObject, request, reply) => {
+      return swaggerObject
+    },
+    transformSpecificationClone: true
+  })
 }
 
 export default registerPlugins

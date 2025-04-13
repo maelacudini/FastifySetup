@@ -4,37 +4,33 @@ import registerPlugins from './utils/functions/registerPlugins'
 import registerRoutes from './utils/functions/registerRoutes'
 import process from 'node:process'
 import { PORT } from './utils/constants/constants'
+import connectMongoDB from './lib/mongoDB/connectDB'
 
 const fastify = Fastify()
 
 const main = async () => {
   try {
+    // CONNECT TO DATABASE
+    await connectMongoDB()
+
     // REGISTER ALL PLUGINS AND ROUTES
     await registerPlugins(fastify)
-    await registerRoutes(fastify)        
+    await registerRoutes(fastify)       
 
     // NOT FOUND ROUTE
     fastify.setNotFoundHandler((request, reply) => {
       reply.status(404).view('views/not-found.ejs', { title: 'Not Found' })
     })
-      
-    // `ready` WILL BE EXECUTED ONCE ALL THE REGISTERS DECLARED HAVE FINISHED THEIR EXECUTION
-    fastify.ready(async (err) => {
-      if (err) {
-        fastify.log.error('Error during Fastify setup:', err)
-        process.exit(1)
-      } else {
-        try {
-          await fastify.listen({ port: PORT })  
-          fastify.log.info(`Server listening on port ${PORT}`)      
-        } catch (err) {
-          fastify.log.error('Error starting server:', err)
-          process.exit(1)
-        }
-      }
-    })
-  } catch (registerErr) {
-    fastify.log.error('Error during plugin registration:', registerErr)
+    
+    try {
+      await fastify.listen({ port: PORT })  
+      fastify.log.info(`Server listening on port ${PORT}`)      
+    } catch (err) {
+      fastify.log.error('Error starting server:', err)
+      process.exit(1)
+    }
+  } catch (error) {
+    fastify.log.error('Error:', error)
     process.exit(1)
   }
 };

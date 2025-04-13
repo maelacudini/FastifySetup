@@ -2,13 +2,18 @@
  
 
 import { FastifyInstance, FastifyRequest } from 'fastify'
-import { UpdateUserBody } from './types'
-import { getUserOpts } from '../utils/schemas/user.schemas'
+import { getUserSchema } from '../utils/schemas/user.schemas'
+import { getUserController } from '../controllers/user.controller'
+import { UpdateUserBody } from '../utils/types/routes.types'
 
-async function userRoutes (fastify: FastifyInstance) {
+const userRoutes = (fastify: FastifyInstance) => {
 
   // PUBLIC, GET USER BY ID
-  fastify.get('/user/:id', getUserOpts)
+  fastify.get('/user/:id', {
+    schema: getUserSchema, 
+    // onRequest: [fastify.authenticate], 
+    handler: getUserController 
+  })
 
   // PUBLIC, UPDATE EXISTING USER
   fastify.put('/user/:id', async (request: FastifyRequest<{ Params: { id: string }; Body: UpdateUserBody }>, reply) => {

@@ -1,4 +1,4 @@
- 
+import 'dotenv/config'
 import Fastify from 'fastify'
 import registerPlugins from './utils/functions/registerPlugins'
 import registerRoutes from './utils/functions/registerRoutes'
@@ -16,7 +16,7 @@ const main = async () => {
     // NOT FOUND ROUTE
     fastify.setNotFoundHandler((request, reply) => {
       reply.status(404).view('views/not-found.ejs', { title: 'Not Found' })
-    })    
+    })
       
     // `ready` WILL BE EXECUTED ONCE ALL THE REGISTERS DECLARED HAVE FINISHED THEIR EXECUTION
     fastify.ready(async (err) => {

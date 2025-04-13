@@ -10,7 +10,7 @@ export default () => {
     .use(i18nextfsBackend)
     .use(i18nextMiddleware.LanguageDetector)
     .init({
-      backend: { loadPath: path.join(getRootDir(), 'src', 'utils', 'locales', '{{lng}}.json') },
+      backend: { loadPath: path.join(getRootDir(), 'src', 'lib', 'i18next', 'locales', '{{lng}}.json') },
       fallbackLng: DEFAULT_LANG,
       preload: AVAILABLE_LANGS,
       saveMissing: true,

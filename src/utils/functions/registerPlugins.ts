@@ -7,14 +7,15 @@ import { FastifyInstance } from 'fastify'
 import fastifyCookie, { FastifyCookieOptions } from '@fastify/cookie'
 import i18nextConfigs from '../../lib/i18next/i18nextConfigs'
 import i18nextMiddleware from 'i18next-http-middleware'
+import jwtPlugin from '../../plugins/jwt.plugin'
 // import fastifyMongodb from '@fastify/mongodb';
 
-async function registerPlugins( fastify: FastifyInstance ) {
+const registerPlugins = async ( fastify: FastifyInstance ) => {
   const root = getRootDir()  
   const i18nextInstance = i18nextConfigs()
 
   // SERVE VIEWS
-  await fastify.register( fastifyView, {
+  await fastify.register(fastifyView, {
     engine: { ejs: ejs },
     root: path.join( root, 'src', 'client' ),
     layout: 'partials/layouts/layout.ejs',
@@ -36,6 +37,9 @@ async function registerPlugins( fastify: FastifyInstance ) {
 
   // USE TRANSLATION
   await fastify.register(i18nextMiddleware.plugin, { i18next: i18nextInstance })
+
+  // USE AND VALIDATE JWT, check out https://www.youtube.com/watch?v=FVJYlRvQom8
+  await fastify.register(jwtPlugin)
 
   /*await fastify.register(fastifyMongodb, {
     // force to close the mongodb connection when app stopped

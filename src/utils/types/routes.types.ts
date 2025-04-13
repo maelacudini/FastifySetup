@@ -1,5 +1,10 @@
 export type CreateUserBody = {
-  username: string
+  password: string
+  email: string
+}
+
+export type LoginUserBody = {
+  password: string
   email: string
 }
 

@@ -13,6 +13,7 @@ export default {
     output: {
         filename: 'client/[name].bundle.cjs',
         path: path.resolve( __dirname, 'dist' ),
+        clean: true,
     },
     module: {
         rules: [
@@ -33,7 +34,7 @@ export default {
     },
     resolve: { extensions: [ '.ts', '.js' ], },
     target: 'web',
-    mode: 'development',
+    mode: process.env.NODE_ENV || 'development',
     plugins: [
         new MiniCssExtractPlugin( { filename: 'output.css', } ),
     ],

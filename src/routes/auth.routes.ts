@@ -1,7 +1,7 @@
 import { FastifyInstance, FastifyRequest } from 'fastify'
-import { CreateUserBody } from './types'
+import { CreateUserBody, LoginUserBody } from '../utils/types/routes.types'
 
-async function authRoutes (fastify: FastifyInstance) {
+const authRoutes = (fastify: FastifyInstance) => {
 
   // PUBLIC, SERVE LOGIN PAGE
   fastify.get( '/login', async (request, reply) => {    
@@ -12,11 +12,25 @@ async function authRoutes (fastify: FastifyInstance) {
   })
 
   // PUBLIC, USER LOGIN
-  fastify.post('/login', async (request: FastifyRequest<{ Body: CreateUserBody }>, reply) => {
+  fastify.post('/login', async (request: FastifyRequest<{ Body: LoginUserBody }>, reply) => {
     const {
-      username, email 
-    } = request.body  
-    reply.send({ message: `POST /login route hit with username: ${username}, email: ${email}, user created` })
+      password, email 
+    } = request.body
+
+    if (password !== '123') {
+      reply.send({ message: 'Please correct credentials' })
+    }
+
+    // check password email and everything else you need to do
+    // if valid send token
+
+    const token = fastify.jwt.sign({
+      email, 
+      role: 'admin' 
+    })
+    
+    // reply.send({ message: `POST /login route hit with email: ${email}` })
+    reply.send({ token })
   })
 
   // PUBLIC, SERVE SIGNUP PAGE
@@ -27,9 +41,9 @@ async function authRoutes (fastify: FastifyInstance) {
   // PUBLIC, USER SIGNUP
   fastify.post('/signup', async (request: FastifyRequest<{ Body: CreateUserBody }>, reply) => {
     const {
-      username, email 
+      password, email 
     } = request.body  
-    reply.send({ message: `POST /signup route hit with username: ${username}, email: ${email}, user created` })
+    reply.send({ message: `POST /signup route hit with password: ${password}, email: ${email}, user created` })
   })
 
   // PUBLIC, USER LOGOUT

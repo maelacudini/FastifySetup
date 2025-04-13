@@ -1,6 +1,6 @@
 import { FastifyError, FastifyReply, FastifyRequest } from "fastify"
 import { getUserService } from "../services/user.services"
-import { UserType } from "./types"
+import { UserType } from "../utils/types/controllers.types"
 
 const getUserController = async (request: FastifyRequest<{ Params: { id: string } }>, reply: FastifyReply) => {
   // Handle incoming HTTP requests, extract relevant data, delegate the processing to a service, format and send the HTTP response

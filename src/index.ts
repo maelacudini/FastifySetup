@@ -15,7 +15,7 @@ const main = async () => {
 
     // REGISTER ALL PLUGINS AND ROUTES
     await registerPlugins(fastify)
-    await registerRoutes(fastify)       
+    await registerRoutes(fastify)
 
     // NOT FOUND ROUTE
     fastify.setNotFoundHandler((request, reply) => {
@@ -25,6 +25,7 @@ const main = async () => {
     try {
       await fastify.listen({ port: PORT })  
       fastify.log.info(`Server listening on port ${PORT}`)      
+      console.log(`✅ Server is listening on http://localhost:${PORT}`)
     } catch (err) {
       fastify.log.error('Error starting server:', err)
       process.exit(1)

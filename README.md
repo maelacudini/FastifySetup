@@ -90,7 +90,34 @@ Fastify setup with TypeScript, EJS, Alpine, HTMX, Tailwind, MongoDB, Webpack, Es
 
 * Client side code.
 
-#### `src/client/partials/`
+#### `src/client/style/`
+
+* **Purpose:** Contains general style, implemented with Tailwind.
+* **Responsibility:** 
+
+#### `src/client/scripts/`
+
+* **Purpose:** Stores javascript code related to client (browser).
+* **Responsibility:** 
+
+#### `src/client/utils/`
+
+* **Purpose:** Stores small, general-purpose helper functions and utilities, only related to client (browser).
+* **Subfolders:**
+    * `constants/`: Keeps all constants in one place. Constants must be written in all caps, use snake case.
+    * `functions/`: General-purpose helper functions.
+    * `types/`: Client side types, keep them separated from Server.
+
+### `public/`
+
+* Static assets needed inside src and dist folder.
+
+#### `public/locales/`
+
+* **Purpose:** Contains json files with translations.
+* **Responsibility:** 
+
+#### `public/client/partials/`
 
 * **Purpose:** Contains EJS fragments and layouts.
 * **Subfolders:**
@@ -99,26 +126,10 @@ Fastify setup with TypeScript, EJS, Alpine, HTMX, Tailwind, MongoDB, Webpack, Es
     * `organisms/`: Union of two or more molecules.
     * `layouts/`: General layouts common to multiple pages.
 
-#### `src/client/style/`
-
-* **Purpose:** Contains general style, implemented with Tailwind.
-* **Responsibility:** I mean it seems pretty obvious.
-
-#### `src/client/views/`
+#### `public/client/views/`
 
 * **Purpose:** Contains EJS files, used with HTMX, that the server will return.
 * **Responsibility:** Acts as the view layer for HTMX requests.
-
-#### `src/client/public/`
-
-* **Purpose:** Stores static assets like CSS, JavaScript, and images.
-* **Responsibility:** Serving static files.
-
-#### `src/client/scripts/`
-
-* **Purpose:** Stores small, general-purpose helper functions and utilities, only related to client (browser).
-* **Responsibility:** Providing reusable utility functions.
-
 
 ## Naming Conventions
 

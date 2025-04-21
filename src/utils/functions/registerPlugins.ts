@@ -2,31 +2,30 @@ import fastifyView from '@fastify/view'
 import fastifyStatic from '@fastify/static'
 import ejs from 'ejs'
 import path from 'path'
-import { getRootDir } from './getRootDir'
 import { FastifyInstance } from 'fastify'
 import fastifyCookie, { FastifyCookieOptions } from '@fastify/cookie'
 import i18nextConfigs from '../../lib/i18next/i18nextConfigs'
 import i18nextMiddleware from 'i18next-http-middleware'
 import jwtPlugin from '../../plugins/jwt.plugin'
-import fastifySwagger from '@fastify/swagger'
+import { getRootDir } from './paths'
 import fastifySwaggerUi from '@fastify/swagger-ui'
 import { PORT } from '../constants/constants'
+import fastifySwagger from '@fastify/swagger'
 
 const registerPlugins = async ( fastify: FastifyInstance ) => {
-  const root = getRootDir()  
-  const i18nextInstance = i18nextConfigs()
+  const i18nextInstance = i18nextConfigs()    
 
   // SERVE VIEWS
   await fastify.register(fastifyView, {
     engine: { ejs: ejs },
-    root: path.join( root, 'src', 'client' ),
+    root: path.join(getRootDir(), 'public', 'client'),
     layout: 'partials/layouts/layout.ejs',
     options: { cache: false }
   } )
   
   // SERVE STATIC FILES (E.G. STYLE)
   await fastify.register(fastifyStatic, {
-    root: path.join(root, 'dist'),
+    root: path.join(getRootDir(), 'dist'),
     prefix: '/dist/',
   })
 
@@ -66,6 +65,7 @@ const registerPlugins = async ( fastify: FastifyInstance ) => {
       docExpansion: 'list',
       deepLinking: false
     },
+    logo: undefined,
     staticCSP: true,
     // eslint-disable-next-line no-unused-vars, @typescript-eslint/no-unused-vars
     transformSpecification: (swaggerObject, request, reply) => {

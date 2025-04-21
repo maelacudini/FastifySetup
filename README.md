@@ -18,20 +18,28 @@ Fastify setup with TypeScript, EJS, Alpine, HTMX, Tailwind, MongoDB, Webpack, Es
 
 1. **Clone the repository:**
 
-    git clone https://github.com/maelacudini/FastifySetup.git \
+    git clone https://github.com/maelacudini/FastifySetup.git
     cd FastifySetup
 
 2. **Install dependencies:**
 
     npm install
 
-3. **Build the project:**
+3. **Create .env file and include the following variables**
+
+    NODE_ENV=either development or production
+    PROD_HOST=add.host.here
+    MONGO_URI=your.mongo.uri
+    JWT_SECRET=yoursecretjwt
+    JWT_SIGNIN_SECRET=yoursecretjwtsignin
+
+4. **Build the project:**
 
     npm run build
 
-4. **Run the project:**
+5. **Run the project:**
 
-    npm run dev
+    npm run start
 
 
 ## Folder Breakdown

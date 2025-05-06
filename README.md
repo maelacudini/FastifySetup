@@ -28,9 +28,13 @@ Fastify setup with TypeScript, EJS, Alpine, HTMX, Tailwind, MongoDB, Webpack, Es
 3. **Create .env file and include the following variables**
 
     NODE_ENV=either development or production
+
     PROD_HOST=add.host.here
+    
     MONGO_URI=your.mongo.uri
+    
     JWT_SECRET=yoursecretjwt
+    
     JWT_SIGNIN_SECRET=yoursecretjwtsignin
 
 4. **Build the project:**
